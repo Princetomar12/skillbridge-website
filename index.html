@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkillBridge | Connect Project Discovery, Student Skills & Team Task Tracking</title>
+  <meta name="description" content="One unified platform connecting student project discovery, complementary skill matchmaking, and team task tracking for academic & minor/major projects.">
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236366f1'><path d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/></svg>">
+</head>
+<body>
+
+  <!-- Ambient lighting backgrounds -->
+  <div class="ambient-glow"></div>
+  <div class="ambient-grid"></div>
+
+  <!-- Top Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="nav-brand" id="nav-brand-btn">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+            <polyline points="2 17 12 22 22 17"></polyline>
+            <polyline points="2 12 12 17 22 12"></polyline>
+          </svg>
+        </div>
+        <div class="brand-name">Skill<span>Bridge</span></div>
+        <span class="badge-tag">Academic Edition</span>
+      </div>
+
+      <!-- Center navigation links -->
+      <nav class="nav-menu">
+        <button class="nav-link active" data-view="home" id="tab-home">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          Home
+        </button>
+        <button class="nav-link" data-view="explore" id="tab-explore">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          Explore Projects
+        </button>
+        <button class="nav-link" data-view="leader" id="tab-leader">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          Team Leader Hub
+          <span class="badge-tag" id="nav-pending-badge" style="display:none; background:#f59e0b; color:#000;">0</span>
+        </button>
+        <button class="nav-link" data-view="workspace" id="tab-workspace">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line><line x1="15" y1="3" x2="15" y2="21"></line></svg>
+          Project Workspace
+        </button>
+        <button class="nav-link" data-view="profile" id="tab-profile">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          Student Profile
+        </button>
+      </nav>
+
+      <!-- Right actions & User profile switcher -->
+      <div class="nav-actions">
+        <a href="presentation.html" class="btn btn-secondary btn-sm" title="Open Presentation Deck & ER Diagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h20v14H2z"></path><path d="M8 21h8"></path><path d="M12 17v4"></path></svg>
+          Slides & ERD
+        </a>
+        <button class="btn btn-primary btn-sm" id="btn-post-project-nav">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          Post Project
+        </button>
+
+        <div class="user-quick-profile" id="btn-switch-persona" title="Click to view or switch student persona">
+          <img src="" alt="Avatar" class="user-quick-avatar" id="nav-avatar">
+          <div class="user-quick-info">
+            <span class="user-quick-name" id="nav-name">Student</span>
+            <span class="user-quick-role" id="nav-role">Role</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main View Container -->
+  <main class="app-container">
+
+    <!-- ==========================================
+         VIEW 1: HOME
+         ========================================== -->
+    <section class="view-section active" id="view-home">
+      <div class="hero-wrapper">
+        <div class="hero-pill">
+          <span class="hero-pill-dot"></span>
+          <span>Bridging The Student Skill & Project Execution Gap</span>
+        </div>
+        <h1 class="hero-title">
+          Turn Student Ideas Into <br>
+          <span class="gradient-text">High-Impact Projects & Dream Teams</span>
+        </h1>
+        <p class="hero-subtitle">
+          Students often have brilliant project ideas but struggle to find suitable teammates with complementary skills. 
+          SkillBridge bridges the gap with smart skill discovery, team recruitment, and an interactive Kanban workspace.
+        </p>
+
+        <div class="hero-cta-group">
+          <button class="btn btn-primary" id="btn-hero-explore">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            Explore Projects
+          </button>
+          <button class="btn btn-glow-cyan" id="btn-hero-post">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            Pitch an Idea / Post Project
+          </button>
+          <button class="btn btn-secondary" id="btn-hero-workspace">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
+            Open Live Workspace
+          </button>
+        </div>
+
+        <!-- Live Platform Stats -->
+        <div class="hero-stats-row">
+          <div class="hero-stat-card">
+            <div class="hero-stat-val" id="stat-projects-count">4</div>
+            <div class="hero-stat-label">Active Projects</div>
+          </div>
+          <div class="hero-stat-card">
+            <div class="hero-stat-val" id="stat-students-count">5</div>
+            <div class="hero-stat-label">Verified Students</div>
+          </div>
+          <div class="hero-stat-card">
+            <div class="hero-stat-val" id="stat-roles-count">7</div>
+            <div class="hero-stat-label">Open Team Roles</div>
+          </div>
+          <div class="hero-stat-card">
+            <div class="hero-stat-val" id="stat-tasks-count">6</div>
+            <div class="hero-stat-label">Sprint Tasks Tracked</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature Pillars -->
+      <div class="pillars-section">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Single Unified Academic Workflow</h2>
+            <p class="section-desc">Designed specifically for minor, major, and interdisciplinary student projects.</p>
+          </div>
+        </div>
+
+        <div class="pillars-grid">
+          <div class="pillar-card">
+            <div class="pillar-icon-box" style="background: rgba(99, 102, 241, 0.15); color: #818cf8;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+            </div>
+            <h3>1. Project Discovery & Ideation</h3>
+            <p>Pitch project concepts, state milestones, and advertise exact specialized roles you need—from ML model training to UI/UX and IoT firmware.</p>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-icon-box" style="background: rgba(6, 182, 212, 0.15); color: #22d3ee;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            </div>
+            <h3>2. Complementary Skill Match</h3>
+            <p>Our algorithm matches students with complementary capabilities (e.g. Pairing a Backend coder with a Figma designer) to eliminate duplicate team overlaps.</p>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-icon-box" style="background: rgba(16, 185, 129, 0.15); color: #34d399;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+            </div>
+            <h3>3. Project Workspace & Kanban</h3>
+            <p>Track sprints, manage To-Do, In Progress, Review, and Done statuses, assign duties to teammates, and ensure timely minor/major project submissions.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         VIEW 2: EXPLORE PROJECTS
+         ========================================== -->
+    <section class="view-section" id="view-explore">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Explore Active Projects</h2>
+          <p class="section-desc">Discover inspiring campus projects seeking teammates with your exact skill set.</p>
+        </div>
+        <button class="btn btn-primary btn-sm" id="btn-post-from-explore">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          Post a Project
+        </button>
+      </div>
+
+      <!-- Controls: Search & Category Filter -->
+      <div class="explore-controls">
+        <div class="search-bar-row">
+          <div class="search-input-wrapper">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" id="project-search-input" class="input-control" placeholder="Search by project title, tech stack (e.g. React, Python, IoT, Figma)...">
+          </div>
+        </div>
+
+        <div class="filter-pills-row" id="category-filter-container">
+          <button class="filter-pill active" data-category="all">All Domains</button>
+          <button class="filter-pill" data-category="AI & Sustainability">AI & Sustainability</button>
+          <button class="filter-pill" data-category="Healthcare & Mobile">Healthcare & Mobile</button>
+          <button class="filter-pill" data-category="EdTech & AI">EdTech & AI</button>
+          <button class="filter-pill" data-category="Web3 & Security">Web3 & Security</button>
+        </div>
+      </div>
+
+      <!-- Project Cards Grid -->
+      <div class="projects-grid" id="projects-grid-container">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+    </section>
+
+    <!-- ==========================================
+         VIEW 3: TEAM LEADER HUB
+         ========================================== -->
+    <section class="view-section" id="view-leader">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Team Leader Portal</h2>
+          <p class="section-desc">Manage recruitment for your projects, review applicant portfolios, and recruit complementary teammates.</p>
+        </div>
+      </div>
+
+      <div class="leader-hub-grid">
+        <!-- Left: Incoming Applications & Join Requests -->
+        <div class="glass-panel">
+          <div class="hub-section-head">
+            <h2>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
+              Teammate Applications
+            </h2>
+            <span class="badge-tag" id="hub-apps-count">2 Pending</span>
+          </div>
+
+          <div class="applications-list" id="applications-list-container">
+            <!-- Dynamic applications rendered here -->
+          </div>
+        </div>
+
+        <!-- Right: Fast Project Pitch & My Led Projects -->
+        <div style="display:flex; flex-direction:column; gap:2rem;">
+          <div class="glass-panel">
+            <div class="hub-section-head">
+              <h2>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                My Led Projects
+              </h2>
+            </div>
+            <div class="my-projects-list" id="my-projects-list-container">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+
+          <div class="glass-panel" style="background: linear-gradient(145deg, rgba(99, 102, 241, 0.08), rgba(6, 182, 212, 0.04));">
+            <h3 style="font-family: var(--font-heading); margin-bottom: 0.5rem;">Have a New Idea?</h3>
+            <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+              Create a project listing in under 2 minutes. Specify the exact complementary skills your team needs (e.g., Designer + Backend Dev) to jumpstart development.
+            </p>
+            <button class="btn btn-primary" id="btn-open-new-proj-modal" style="width:100%;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              Pitch New Project Idea
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         VIEW 4: PROJECT WORKSPACE (KANBAN BOARD)
+         ========================================== -->
+    <section class="view-section" id="view-workspace">
+      <!-- Workspace Header Bar -->
+      <div class="workspace-header-bar">
+        <div>
+          <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom: 0.35rem;">
+            <span class="badge-tag" style="background:rgba(6, 182, 212, 0.15); color:#38bdf8;">Active Workspace</span>
+            <select id="workspace-project-select" class="form-select" style="width:auto; padding:0.25rem 0.75rem; font-size:0.85rem;">
+              <!-- Dynamic options -->
+            </select>
+          </div>
+          <h2 class="workspace-proj-title" id="workspace-title">EcoTrack AI</h2>
+          <p id="workspace-tagline" style="font-size:0.9rem; color:var(--text-muted);">Smart IoT and AI platform optimizing hostel electricity</p>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:1.5rem; flex-wrap:wrap;">
+          <div>
+            <div style="font-size:0.72rem; text-transform:uppercase; color:var(--text-dim); font-weight:700; margin-bottom:0.25rem;">Team Members</div>
+            <div class="workspace-team-avatars" id="workspace-team-avatars-row">
+              <!-- Dynamic avatars -->
+            </div>
+          </div>
+
+          <button class="btn btn-glow-cyan btn-sm" id="btn-add-task-modal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            Add Sprint Task
+          </button>
+        </div>
+      </div>
+
+      <!-- Kanban 4 Columns -->
+      <div class="kanban-grid">
+        <!-- Column 1: To Do -->
+        <div class="kanban-column col-todo" data-status="todo">
+          <div class="column-header">
+            <div class="column-title-group">
+              <span class="column-indicator-dot"></span>
+              <span>To Do</span>
+            </div>
+            <span class="column-count" id="count-todo">0</span>
+          </div>
+          <div class="column-body" id="col-body-todo"></div>
+        </div>
+
+        <!-- Column 2: In Progress -->
+        <div class="kanban-column col-inprogress" data-status="inprogress">
+          <div class="column-header">
+            <div class="column-title-group">
+              <span class="column-indicator-dot"></span>
+              <span>In Progress</span>
+            </div>
+            <span class="column-count" id="count-inprogress">0</span>
+          </div>
+          <div class="column-body" id="col-body-inprogress"></div>
+        </div>
+
+        <!-- Column 3: Review -->
+        <div class="kanban-column col-review" data-status="review">
+          <div class="column-header">
+            <div class="column-title-group">
+              <span class="column-indicator-dot"></span>
+              <span>Under Review</span>
+            </div>
+            <span class="column-count" id="count-review">0</span>
+          </div>
+          <div class="column-body" id="col-body-review"></div>
+        </div>
+
+        <!-- Column 4: Done -->
+        <div class="kanban-column col-done" data-status="done">
+          <div class="column-header">
+            <div class="column-title-group">
+              <span class="column-indicator-dot"></span>
+              <span>Done / Shipped</span>
+            </div>
+            <span class="column-count" id="count-done">0</span>
+          </div>
+          <div class="column-body" id="col-body-done"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         VIEW 5: STUDENT PROFILE
+         ========================================== -->
+    <section class="view-section" id="view-profile">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Student Profile & Skill Portfolio</h2>
+          <p class="section-desc">Showcase your specialized skills, reputation score, and complementary team compatibility.</p>
+        </div>
+      </div>
+
+      <div class="profile-grid-layout">
+        <!-- Left: Student Info Card -->
+        <div class="profile-sidebar">
+          <div class="profile-main-card">
+            <img src="" alt="Student Profile" class="profile-avatar-large" id="profile-avatar">
+            <h3 class="profile-name-lg" id="profile-name">Student Name</h3>
+            <p class="profile-headline" id="profile-role">Fullstack Developer</p>
+            <p class="profile-uni" id="profile-uni">Apex Institute of Technology</p>
+
+            <div class="profile-bio-box" id="profile-bio">
+              Student bio details...
+            </div>
+
+            <div class="profile-socials-row">
+              <a href="#" class="social-link-btn" id="profile-github" target="_blank">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                GitHub
+              </a>
+              <a href="#" class="social-link-btn" id="profile-linkedin" target="_blank">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                LinkedIn
+              </a>
+            </div>
+          </div>
+
+          <!-- Quick Persona Switcher for Evaluation -->
+          <div class="glass-panel">
+            <h4 style="font-size:0.85rem; text-transform:uppercase; color:var(--text-dim); margin-bottom:0.75rem; font-weight:700;">
+              Switch Demo Persona
+            </h4>
+            <div style="display:flex; flex-direction:column; gap:0.5rem;" id="persona-picker-list">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Skills, Looking For & Contribution Stats -->
+        <div style="display:flex; flex-direction:column; gap:1.75rem;">
+          <div class="glass-panel">
+            <div class="hub-section-head">
+              <h2>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                Technical & Complementary Skills
+              </h2>
+            </div>
+            <div class="skills-bars-container" id="profile-skills-list">
+              <!-- Dynamic skill bars -->
+            </div>
+          </div>
+
+          <div class="glass-panel">
+            <div class="hub-section-head">
+              <h2>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
+                Looking for Teammates With
+              </h2>
+            </div>
+            <div class="project-tags-row" id="profile-looking-for-row">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+
+          <div class="glass-panel">
+            <div class="hub-section-head">
+              <h2>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+                Project Track Record
+              </h2>
+            </div>
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr)); gap:1rem; text-align:center;">
+              <div style="background:rgba(10, 15, 29, 0.6); padding:1rem; border-radius:var(--radius-md); border:1px solid var(--border-light);">
+                <div style="font-size:1.8rem; font-weight:700; color:var(--primary);" id="stat-led-val">2</div>
+                <div style="font-size:0.75rem; color:var(--text-muted);">Projects Led</div>
+              </div>
+              <div style="background:rgba(10, 15, 29, 0.6); padding:1rem; border-radius:var(--radius-md); border:1px solid var(--border-light);">
+                <div style="font-size:1.8rem; font-weight:700; color:var(--secondary);" id="stat-joined-val">3</div>
+                <div style="font-size:0.75rem; color:var(--text-muted);">Joined Teams</div>
+              </div>
+              <div style="background:rgba(10, 15, 29, 0.6); padding:1rem; border-radius:var(--radius-md); border:1px solid var(--border-light);">
+                <div style="font-size:1.8rem; font-weight:700; color:var(--accent-emerald);" id="stat-tasks-done-val">24</div>
+                <div style="font-size:0.75rem; color:var(--text-muted);">Tasks Delivered</div>
+              </div>
+              <div style="background:rgba(10, 15, 29, 0.6); padding:1rem; border-radius:var(--radius-md); border:1px solid var(--border-light);">
+                <div style="font-size:1.8rem; font-weight:700; color:var(--accent-amber);" id="stat-reputation-val">98%</div>
+                <div style="font-size:0.75rem; color:var(--text-muted);">Reputation Score</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================
+       MODAL 1: APPLY TO PROJECT
+       ========================================== -->
+  <div class="modal-overlay" id="modal-apply">
+    <div class="modal-dialog">
+      <button class="modal-close-btn" id="btn-close-apply-modal">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+      <h3 class="modal-title">Join Project Team</h3>
+      <p class="modal-subtitle" id="apply-modal-project-title">Applying to Project</p>
+
+      <form id="form-apply">
+        <input type="hidden" id="apply-project-id">
+        <div class="form-group">
+          <label class="form-label" for="apply-role-select">Select Desired Role</label>
+          <select id="apply-role-select" class="form-select" required>
+            <!-- Dynamic roles filled -->
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="apply-pitch-msg">Why are you a good fit? (Complementary Skill Pitch)</label>
+          <textarea id="apply-pitch-msg" class="form-textarea" placeholder="Explain what technical or domain skills you bring to this project..." required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="apply-portfolio-url">GitHub / Portfolio / LinkedIn URL</label>
+          <input type="url" id="apply-portfolio-url" class="form-input" placeholder="https://github.com/your-username">
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; gap:0.75rem; margin-top:1.5rem;">
+          <button type="button" class="btn btn-secondary" id="btn-cancel-apply">Cancel</button>
+          <button type="submit" class="btn btn-primary">Send Application</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MODAL 2: POST NEW PROJECT
+       ========================================== -->
+  <div class="modal-overlay" id="modal-post-project">
+    <div class="modal-dialog">
+      <button class="modal-close-btn" id="btn-close-post-modal">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+      <h3 class="modal-title">Pitch a Project Idea</h3>
+      <p class="modal-subtitle">Define your project vision and specify the complementary teammates you need.</p>
+
+      <form id="form-post-project">
+        <div class="form-group">
+          <label class="form-label" for="post-title">Project Title</label>
+          <input type="text" id="post-title" class="form-input" placeholder="e.g. Autonomous Campus Delivery Rover" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="post-tagline">Short Tagline (1 sentence elevator pitch)</label>
+          <input type="text" id="post-tagline" class="form-input" placeholder="e.g. Self-navigating rover delivering lab supplies across buildings" required>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+          <div class="form-group">
+            <label class="form-label" for="post-category">Domain / Category</label>
+            <select id="post-category" class="form-select">
+              <option value="AI & Sustainability">AI & Sustainability</option>
+              <option value="Healthcare & Mobile">Healthcare & Mobile</option>
+              <option value="EdTech & AI">EdTech & AI</option>
+              <option value="Web3 & Security">Web3 & Security</option>
+              <option value="Robotics & IoT">Robotics & IoT</option>
+              <option value="FinTech">FinTech</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="post-deadline">Target Submission Deadline</label>
+            <input type="date" id="post-deadline" class="form-input" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="post-description">Project Overview & Goals</label>
+          <textarea id="post-description" class="form-textarea" placeholder="Detail the problem statement, proposed architecture, and milestones..." required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="post-needed-role-1">Open Role 1 Needed & Required Skills</label>
+          <input type="text" id="post-needed-role-1" class="form-input" placeholder="e.g. UI/UX Designer (Figma, Prototyping)" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="post-needed-role-2">Open Role 2 Needed & Required Skills (Optional)</label>
+          <input type="text" id="post-needed-role-2" class="form-input" placeholder="e.g. Computer Vision Dev (Python, OpenCV)">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="post-tags">Tags (Comma-separated)</label>
+          <input type="text" id="post-tags" class="form-input" placeholder="AI/ML, Python, ROS, Hardware, MinorProject">
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; gap:0.75rem; margin-top:1.5rem;">
+          <button type="button" class="btn btn-secondary" id="btn-cancel-post">Cancel</button>
+          <button type="submit" class="btn btn-glow-cyan">Publish Project</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MODAL 3: ADD WORKSPACE TASK
+       ========================================== -->
+  <div class="modal-overlay" id="modal-add-task">
+    <div class="modal-dialog">
+      <button class="modal-close-btn" id="btn-close-task-modal">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+      <h3 class="modal-title">Create Sprint Task</h3>
+      <p class="modal-subtitle">Assign deliverables and track progress on the project Kanban board.</p>
+
+      <form id="form-add-task">
+        <div class="form-group">
+          <label class="form-label" for="task-title">Task Title</label>
+          <input type="text" id="task-title" class="form-input" placeholder="e.g. Connect MongoDB schema with Express router" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="task-description">Description & Acceptance Criteria</label>
+          <textarea id="task-description" class="form-textarea" placeholder="Detail specifications or testing requirements..."></textarea>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+          <div class="form-group">
+            <label class="form-label" for="task-status">Initial Status</label>
+            <select id="task-status" class="form-select">
+              <option value="todo">To Do</option>
+              <option value="inprogress">In Progress</option>
+              <option value="review">Under Review</option>
+              <option value="done">Done</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="task-priority">Priority</label>
+            <select id="task-priority" class="form-select">
+              <option value="urgent">Urgent</option>
+              <option value="high">High</option>
+              <option value="medium" selected>Medium</option>
+              <option value="low">Low</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+          <div class="form-group">
+            <label class="form-label" for="task-assignee">Assign To Teammate</label>
+            <select id="task-assignee" class="form-select">
+              <!-- Dynamically populated from active project's team -->
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="task-duedate">Due Date</label>
+            <input type="date" id="task-duedate" class="form-input">
+          </div>
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; gap:0.75rem; margin-top:1.5rem;">
+          <button type="button" class="btn btn-secondary" id="btn-cancel-task">Cancel</button>
+          <button type="submit" class="btn btn-primary">Add Task to Board</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container"></div>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div>
+        <strong>SkillBridge</strong> &copy; 2026 Academic Innovation Platform. Built for Minor & Major Student Projects.
+      </div>
+      <div>
+        Designed for Project Discovery &bull; Complementary Skill Match &bull; Team Kanban Sprint Tracking
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

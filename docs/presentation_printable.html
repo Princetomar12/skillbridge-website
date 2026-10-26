@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SkillBridge - Project Presentation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    @page {
+      size: A4 landscape;
+      margin: 0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: #090d16;
+      color: #f8fafc;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .slide-page {
+      width: 297mm;
+      height: 210mm;
+      page-break-after: always;
+      break-after: page;
+      position: relative;
+      background: #090d16;
+      padding: 16mm 20mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .slide-bg-glow {
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(6, 182, 212, 0.05) 60%, transparent 80%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    /* Header */
+    .slide-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 8mm;
+      margin-bottom: 8mm;
+    }
+
+    .brand-logo-text {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 800;
+    }
+
+    .brand-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #6366f1, #06b6d4);
+    }
+
+    .brand-title span {
+      background: linear-gradient(135deg, #6366f1, #06b6d4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .slide-category-badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #818cf8;
+      background: rgba(99, 102, 241, 0.15);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      padding: 4px 14px;
+      border-radius: 999px;
+    }
+
+    /* Content Area */
+    .slide-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .slide-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      line-height: 1.2;
+      background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .slide-subtitle {
+      font-size: 1.05rem;
+      color: #94a3b8;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    /* Footer */
+    .slide-footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 6mm;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: #64748b;
+    }
+
+    /* Grid & Card Utilities */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .card {
+      background: #111a33;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 16px 20px;
+    }
+
+    .card h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      font-size: 0.88rem;
+      color: #94a3b8;
+      line-height: 1.5;
+    }
+
+    /* ER Diagram Visual Layout */
+    .er-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    .entity-box {
+      background: #0f172a;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .entity-head {
+      background: linear-gradient(135deg, #4f46e5, #06b6d4);
+      color: #fff;
+      padding: 6px 12px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .entity-fields {
+      padding: 8px 12px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: #cbd5e1;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .pk { color: #f59e0b; font-weight: bold; }
+    .fk { color: #38bdf8; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================
+       SLIDE 1: COVER / TITLE
+       ========================================== -->
+  <div class="slide-page">
+    <div class="slide-bg-glow"></div>
+    <div class="slide-header">
+      <div class="brand-logo-text">
+        <div class="brand-dot"></div>
+        <div class="brand-title">Skill<span>Bridge</span></div>
+      </div>
+      <div class="slide-category-badge">Academic Minor Project</div>
+    </div>
+
+    <div class="slide-body" style="text-align: center; max-width: 850px; margin: 0 auto;">
+      <h1 class="slide-title" style="font-size: 3rem; margin-bottom: 16px;">
+        SkillBridge: Student Project Discovery & Complementary Skill Matchmaker
+      </h1>
+      <p class="slide-subtitle" style="font-size: 1.25rem; color: #a5b4fc; margin-bottom: 30px;">
+        One Unified Campus Platform Connecting Project Discovery, Student Skills & Team Sprint Tracking
+      </p>
+
+      <div class="grid-2" style="text-align: left; background: #111a33; padding: 20px 28px; border-radius: 16px; border: 1px solid rgba(99,102,241,0.25);">
+        <div>
+          <div style="font-size: 0.75rem; text-transform: uppercase; color: #64748b; font-weight: 700;">Project Category</div>
+          <div style="font-size: 1.1rem; font-weight: 700; color: #fff;">Academic Minor Project Defense</div>
+          <div style="font-size: 0.85rem; color: #94a3b8; margin-top: 4px;">Department of Computer Science & Engineering</div>
+        </div>
+        <div>
+          <div style="font-size: 0.75rem; text-transform: uppercase; color: #64748b; font-weight: 700;">Key Core Modules</div>
+          <div style="font-size: 1.1rem; font-weight: 700; color: #38bdf8;">Discover • Match • Recruit • Kanban</div>
+          <div style="font-size: 0.85rem; color: #94a3b8; margin-top: 4px;">Ready for Major Project Scaling</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>SkillBridge Academic Platform Presentation</span>
+      <span>Slide 1 of 10</span>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       SLIDE 2: PROBLEM STATEMENT
+       ========================================== -->
+  <div class="slide-page">
+    <div class="slide-bg-glow"></div>
+    <div class="slide-header">
+      <div class="brand-logo-text">
+        <div class="brand-dot"></div>
+        <div class="brand-title">Skill<span>Bridge</span></div>
+      </div>
+      <div class="slide-category-badge">Motivation & Need</div>
+    </div>
+
+    <div class="slide-body">
+      <h2 class="slide-title">Problem Statement & Campus Challenges</h2>
+      <p class="slide-subtitle">Students often have groundbreaking project ideas but fail to execute due to three systemic bottlenecks:</p>
+
+      <div class="grid-3">
+        <div class="card" style="border-color: rgba(244, 63, 94, 0.3);">
+          <div style="font-size: 1.8rem; margin-bottom: 8px;">🚫</div>
+          <h3 style="color: #fb7185;">1. Redundant Skill Teams</h3>
+          <p>Student groups form based on friend circles rather than complementary competencies, resulting in teams with 4 backend coders and zero UI/UX or data specialists.</p>
+        </div>
+
+        <div class="card" style="border-color: rgba(245, 158, 11, 0.3);">
+          <div style="font-size: 1.8rem; margin-bottom: 8px;">📢</div>
+          <h3 style="color: #fbbf24;">2. Fragmented Discovery</h3>
+          <p>Project recruitment happens across scattered WhatsApp, Telegram, or Discord chats with no structured tracking of domain categories or role requirements.</p>
+        </div>
+
+        <div class="card" style="border-color: rgba(99, 102, 241, 0.3);">
+          <div style="font-size: 1.8rem; margin-bottom: 8px;">📉</div>
+          <h3 style="color: #a5b4fc;">3. The Execution Abyss</h3>
+          <p>After team formation, students lack dedicated sprint tracking tools. Milestones are neglected, resulting in rushed submissions right before final exam evaluations.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>SkillBridge Academic Platform Presentation</span>
+      <span>Slide 2 of 10</span>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       SLIDE 3: PROPOSED SOLUTION
+       ========================================== -->
+  <div class="slide-page">
+    <div class="slide-bg-glow"></div>
+    <div class="slide-header">
+      <div class="brand-logo-text">
+        <div class="brand-dot"></div>
+        <div class="brand-title">Skill<span>Bridge</span></div>
+      </div>
+      <div class="slide-category-badge">System Innovation</div>
+    </div>
+
+    <div class="slide-body">
+      <h2 class="slide-title">Proposed Solution: The 3 Core Pillars</h2>
+      <p class="slide-subtitle">A unified academic pipeline linking idea discovery, complementary skill recruitment, and sprint execution:</p>
+
+      <div class="grid-3">
+        <div class="card" style="border-color: rgba(99, 102, 241, 0.35);">
+          <div style="font-size: 1.8rem; margin-bottom: 8px;">💡</div>
+          <h3 style="color: #818cf8;">Pillar 1: Idea Pitching & Discovery</h3>
+          <p>Leaders post projects with defined domain tags, submission deadlines, and precise unfilled roles (e.g. "Need: React Dev + Figma Designer").</p>
+        </div>
+
+        <div class="card" style="border-color: rgba(6, 182, 212, 0.35);">
+          <div style="font-size: 1.8rem; margin-bottom: 8px;">⚡</div>
+          <h3 style="color: #38bdf8;">Pillar 2: Complementary Matching</h3>
+          <p>Synergy algorithm evaluates student competencies against unfilled roles, displaying a dynamic compatibility percentage (e.g. "94% Match").</p>
+        </div>
+
+        <div class="card" style="border-color: rgba(16, 185, 129, 0.35);">
+          <div style="font-size: 1.8rem; margin-bottom: 8px;">📋</div>
+          <h3 style="color: #34d399;">Pillar 3: Sprint Workspace Kanban</h3>
+          <p>Interactive 4-column sprint task board (To Do, In Progress, Review, Done) with drag-and-drop task movement, priority tags, and assignees.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>SkillBridge Academic Platform Presentation</span>
+      <span>Slide 3 of 10</span>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       SLIDE 4: SYSTEM ARCHITECTURE
+       ========================================== -->
+  <div class="slide-page">
+    <div class="slide-bg-glow"></div>
+    <div class="slide-header">
+      <div class="brand-logo-text">
+        <div class="brand-dot"></div>
+        <div class="brand-title">Skill<span>Bridge</span></div>
+      </div>
+      <div class="slide-category-badge">Architecture</div>
+    </div>
+
+    <div class="slide-body">
+      <h2 class="slide-title">System Architecture & Execution Flow</h2>
+      <p class="slide-subtitle">How data flows seamlessly from student skill profiles to completed project deliverables:</p>
+
+      <div class="grid-4">
+        <div class="card" style="text-align: center;">
+          <div style="background: rgba(99, 102, 241, 0.2); width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; color: #818cf8; font-weight: bold;">1</div>
+          <h3 style="font-size: 1rem;">Profile Creation</h3>
+          <p style="font-size: 0.8rem;">Students register technical skills, proficiencies, GitHub/portfolio links, and team desires.</p>
+        </div>
+
+        <div class="card" style="text-align: center;">
+          <div style="background: rgba(6, 182, 212, 0.2); width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; color: #38bdf8; font-weight: bold;">2</div>
+          <h3 style="font-size: 1rem;">Match Calculation</h3>
+          <p style="font-size: 0.8rem;">Synergy algorithm computes complementary fit between student profile and open project roles.</p>
+        </div>
+
+        <div class="card" style="text-align: center;">
+          <div style="background: rgba(245, 158, 11, 0.2); width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; color: #fbbf24; font-weight: bold;">3</div>
+          <h3 style="font-size: 1rem;">Recruit & Accept</h3>
+          <p style="font-size: 0.8rem;">Leader reviews applicant pitch in the Hub and clicks 'Accept', adding the student to the active roster.</p>
+        </div>
+
+        <div class="card" style="text-align: center;">
+          <div style="background: rgba(16, 185, 129, 0.2); width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; color: #34d399; font-weight: bold;">4</div>
+          <h3 style="font-size: 1rem;">Kanban Sprint</h3>
+          <p style="font-size: 0.8rem;">Tasks are assigned to team members and moved through sprint columns until final submission.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>SkillBridge Academic Platform Presentation</span>
+      <span>Slide 4 of 10</span>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       SLIDE 5: ENTITY RELATIONSHIP (ER) DIAGRAM
+       ========================================== -->
+  <div class="slide-page">
+    <div class="slide-bg-glow"></div>
+    <div class="slide-header">
+      <div class="brand-logo-text">
+        <div class="brand-dot"></div>
+        <div class="brand-title">Skill<span>Bridge</span></div>
+      </div>
+      <div class="slide-category-badge">Database Design</div>
+    </div>
+
+    <div class="slide-body">
+      <h2 class="slide-title">Entity-Relationship (ER) Schema</h2>
+      <p class="slide-subtitle">Relational database structure governing users, projects, roles, applications, and sprint tasks:</p>
+
+      <div class="er-grid">
+        <!-- Entity 1 -->
+        <div class="entity-box">
+          <div class="entity-head"><span>USER / STUDENT</span><span>(1)</span></div>
+          <div class="entity-fields">
+            <div><span class="pk">PK</span> user_id: VARCHAR</div>
+            <div>name: VARCHAR</div>
+            <div>academic_role: VARCHAR</div>
+            <div>university: VARCHAR</div>
+            <div>skills: JSON ARRAY</div>
+            <div>reputation_score: INT</div>
+          </div>
+        </div>
+
+        <!-- Entity 2 -->
+        <div class="entity-box">
+          <div class="entity-head"><span>PROJECT</span><span>(M)</span></div>
+          <div class="entity-fields">
+            <div><span class="pk">PK</span> project_id: VARCHAR</div>
+            <div><span class="fk">FK</span> leader_id: VARCHAR</div>
+            <div>title: VARCHAR</div>
+            <div>category: VARCHAR</div>
+            <div>deadline: DATE</div>
+            <div>sprint_progress: INT</div>
+          </div>
+        </div>
+
+        <!-- Entity 3 -->
+        <div class="entity-box">
+          <div class="entity-head"><span>OPEN_ROLE</span><span>(M)</span></div>
+          <div class="entity-fields">
+            <div><span class="pk">PK</span> role_id: VARCHAR</div>
+            <div><span class="fk">FK</span> project_id: VARCHAR</div>
+            <div>role_name: VARCHAR</div>
+            <div>skill_needed: VARCHAR</div>
+            <div>is_filled: BOOLEAN</div>
+          </div>
+        </div>
+
+        <!-- Entity 4 -->
+        <div class="entity-box">
+          <div class="entity-head"><span>APPLICATION</span><span>(M)</span></div>
+          <div class="entity-fields">
+            <div><span class="pk">PK</span> application_id: VARCHAR</div>
+            <div><span class="fk">FK</span> project_id: VARCHAR</div>
+            <div><span class="fk">FK</span> applicant_id: VARCHAR</div>
+            <div>applied_role: VARCHAR</div>
+            <div>pitch_message: TEXT</div>
+            <div>status: ENUM</div>
+          </div>
+        </div>
+
+        <!-- Entity 5 -->
+        <div class="entity-box">
+          <div class="entity-head"><span>SPRINT_TASK</span><span>(M)</span></div>
+          <div class="entity-fields">
+            <div><span class="pk">PK</span> task_id: VARCHAR</div>
+            <div><span class="fk">FK</span> project_id: VARCHAR</div>
+            <div>title: VARCHAR</div>
+            <div>status: ENUM</div>
+            <div>priority: ENUM</div>
+            <div>assignee_name: VARCHAR</div>
+          </div>
+        </div>
+
+        <!-- Relationships -->
+        <div class="entity-box" style="border-color: rgba(6, 182, 212, 0.4);">
+          <div class="entity-head" style="background: linear-gradient(135deg, #0284c7, #06b6d4);"><span>RELATIONSHIPS</span></div>
+          <div class="entity-fields" style="font-size: 0.72rem; color: #94a3b8;">
+            <div>• USER <strong>leads (1:N)</strong> PROJECT</div>
+            <div>• PROJECT <strong>requires (1:N)</strong> OPEN_ROLE</div>
+            <div>• USER <strong>submits (1:N)</strong> APPLICATION</div>
+            <div>• PROJECT <strong>tracks (1:N)</strong> SPRINT_TASK</div>
+            <div>• USER <strong>assigned (M:N)</strong> SPRINT_TASK</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>SkillBridge Academic Platform Presentation</span>
+      <span>Slide 5 of 10</span>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       SLIDE 6: MATCHMAKING ALGORITHM
+       ========================================== -->
+  <div class="slide-page">
+    <div class="slide-bg-glow"></div>
+    <div class="slide-header">
+      <div class="brand-logo-text">
+        <div class="brand-dot"></div>
+        <div class="brand-title">Skill<span>Bridge</span></div>
+      </div>
+      <div class="slide-category-badge">Algorithm Design</div>
+    </div>
+
+    <div class="slide-body">
+      <h2 class="slide-title">Complementary Skill Matchmaking Algorithm</h2>
+      <p class="slide-subtitle">How SkillBridge prevents team skill imbalance and encourages multidisciplinary projects:</p>
+
+      <div class="grid-2">
+        <div class="card" style="font-family: 'Courier New', monospace; font-size: 0.78rem; line-height: 1.6; background: #0b1120;">
+          <div style="color: #64748b;">// Synergy Scoring Calculation</div>
+          <div>Score = 0; TotalChecks = 0;</div>
+          <div style="margin: 6px 0;">For each role in project.openRoles:</div>
+          <div>&nbsp;&nbsp;TotalChecks += 2.0;</div>
+          <div>&nbsp;&nbsp;If student.hasSkill(role.skillNeeded):</div>
+          <div style="color: #34d399;">&nbsp;&nbsp;&nbsp;&nbsp;Score += 2.0; // Direct Fit</div>
+          <div>&nbsp;&nbsp;Else If isComplementary(student, role):</div>
+          <div style="color: #38bdf8;">&nbsp;&nbsp;&nbsp;&nbsp;Score += 1.5; // High Synergy Pair</div>
+          <div>&nbsp;&nbsp;Else:</div>
+          <div style="color: #94a3b8;">&nbsp;&nbsp;&nbsp;&nbsp;Score += 0.8; // Academic Baseline</div>
+          <div style="margin-top: 6px; color: #f59e0b;">MatchRate = min(98%, round(Score/TotalChecks * 100));</div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div class="card">
+            <h3 style="color: #34d399; font-size: 1rem;">Direct Role Alignment (+2.0)</h3>
+            <p style="font-size: 0.82rem;">When an applicant's core expertise matches the exact unfilled technical role advertised by the leader.</p>
+          </div>
+          <div class="card">
+            <h3 style="color: #38bdf8; font-size: 1rem;">Complementary Synergy (+1.5)</h3>
+            <p style="font-size: 0.82rem;">Rewards cross-discipline pairings (e.g. UI/UX Designer paired with a Backend system, or ML specialist with Data engineering).</p>
+          </div>
+          <div class="card">
+            <h3 style="color: #a5b4fc; font-size: 1rem;">Zero Skill Saturation</h3>
+            <p style="font-size: 0.82rem;">Discourages duplicate skill applications to ensure balanced teams with end-to-end capabilities.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>SkillBridge Academic Platform Presentation</span>
+      <span>Slide 6 of 10</span>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       SLIDE 7: CORE MODULES & FEATURES
+       ========================================== -->
+  <div class="slide-page">
+    <div class="slide-bg-glow"></div>
+    <div class="slide-header">
+      <div class="brand-logo-text">
+        <div class="brand-dot"></div>
+        <div class="brand-title">Skill<span>Bridge</span></div>
+      </div>
+      <div class="slide-category-badge">Implementation</div>
+    </div>
+
+    <div class="slide-body">
+      <h2 class="slide-title">Core System Modules</h2>
+      <p class="slide-subtitle">Four fully implemented and interconnected academic workflows:</p>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3 style="color: #818cf8;">1. Explore & Project Discovery Feed</h3>
+          <p>Real-time search by keyword, domain category filters (AI/ML, Mobile, Web3), dynamic skill match percentage badges, and rapid one-click application modal.</p>
+        </div>
+
+        <div class="card">
+          <h3 style="color: #38bdf8;">2. Team Leader Portal</h3>
+          <p>Review incoming student applications, read custom pitch messages, inspect portfolio links, and accept or decline candidates with immediate roster sync.</p>
+        </div>
+
+        <div class="card">
+          <h3 style="color: #34d399;">3. Project Workspace Kanban Board</h3>
+          <p>Interactive 4-column sprint board (To Do, In Progress, Review, Done) with drag-and-drop task movement, priority pills, assignees, and due dates.</p>
+        </div>
+
+        <div class="card">
+          <h3 style="color: #fbbf24;">4. Student Profile & Persona Switcher</h3>
+          <p>Technical skill proficiency bars, complementary role desires, and a live persona switcher allowing evaluators to test as different student roles.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>SkillBridge Academic Platform Presentation</span>
+      <span>Slide 7 of 10</span>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       SLIDE 8: TECH STACK & REQUIREMENTS
+       ========================================== -->
+  <div class="slide-page">
+    <div class="slide-bg-glow"></div>
+    <div class="slide-header">
+      <div class="brand-logo-text">
+        <div class="brand-dot"></div>
+        <div class="brand-title">Skill<span>Bridge</span></div>
+      </div>
+      <div class="slide-category-badge">Specifications</div>
+    </div>
+
+    <div class="slide-body">
+      <h2 class="slide-title">Technical Stack & System Requirements</h2>
+      <p class="slide-subtitle">Pure vanilla web standards ensuring zero dependency issues, high performance, and rapid deployment:</p>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3 style="color: #818cf8; margin-bottom: 12px;">Software Technologies</h3>
+          <ul style="font-size: 0.88rem; color: #cbd5e1; padding-left: 20px; line-height: 1.8;">
+            <li><strong>Frontend Structure:</strong> Semantic HTML5 & accessible modals</li>
+            <li><strong>Styling:</strong> Vanilla CSS3 (Custom design system, glassmorphism)</li>
+            <li><strong>Application Logic:</strong> Modern JavaScript (ES6+), Event-driven SPA</li>
+            <li><strong>Data Persistence:</strong> Web Storage API (localStorage)</li>
+            <li><strong>Interactivity:</strong> HTML5 Drag-and-Drop Kanban API</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3 style="color: #38bdf8; margin-bottom: 12px;">Hardware & Deployment</h3>
+          <ul style="font-size: 0.88rem; color: #cbd5e1; padding-left: 20px; line-height: 1.8;">
+            <li><strong>Processor:</strong> Intel Core i3 (4th Gen) / AMD Ryzen 3 or higher</li>
+            <li><strong>RAM:</strong> 4 GB minimum (8 GB recommended)</li>
+            <li><strong>Browser Support:</strong> Google Chrome, Edge, Firefox, Brave</li>
+            <li><strong>Local Server:</strong> Python HTTP Server (`python -m http.server 3000`)</li>
+            <li><strong>Zero Build Step:</strong> Instant startup without npm dependency bloat</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>SkillBridge Academic Platform Presentation</span>
+      <span>Slide 8 of 10</span>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       SLIDE 9: FUTURE SCOPE / MAJOR PROJECT
+       ========================================== -->
+  <div class="slide-page">
+    <div class="slide-bg-glow"></div>
+    <div class="slide-header">
+      <div class="brand-logo-text">
+        <div class="brand-dot"></div>
+        <div class="brand-title">Skill<span>Bridge</span></div>
+      </div>
+      <div class="slide-category-badge">Major Project Roadmap</div>
+    </div>
+
+    <div class="slide-body">
+      <h2 class="slide-title">Roadmap: Upgrade to Major Project</h2>
+      <p class="slide-subtitle">Modular design enables effortless scaling from minor project to enterprise campus deployment:</p>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3 style="color: #a5b4fc;">1. Full-Stack Cloud Database</h3>
+          <p>Migrate client LocalStorage to Node.js/Express backend with PostgreSQL / MongoDB and Prisma ORM for multi-user synchronization.</p>
+        </div>
+
+        <div class="card">
+          <h3 style="color: #38bdf8;">2. Real-Time Workspace Chat</h3>
+          <p>Integrate WebSockets (Socket.io) inside the project workspace for live team discussion, file uploads, and milestone notifications.</p>
+        </div>
+
+        <div class="card">
+          <h3 style="color: #34d399;">3. University Single Sign-On (SSO)</h3>
+          <p>Authenticate student registration through Institutional Google Workspace / LDAP using College Roll Numbers.</p>
+        </div>
+
+        <div class="card">
+          <h3 style="color: #fbbf24;">4. AI Synopsis & Plagiarism Checker</h3>
+          <p>Automated verification against past academic batches to ensure project uniqueness and assist in drafting synopses.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>SkillBridge Academic Platform Presentation</span>
+      <span>Slide 9 of 10</span>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       SLIDE 10: CONCLUSION & DEMO
+       ========================================== -->
+  <div class="slide-page">
+    <div class="slide-bg-glow"></div>
+    <div class="slide-header">
+      <div class="brand-logo-text">
+        <div class="brand-dot"></div>
+        <div class="brand-title">Skill<span>Bridge</span></div>
+      </div>
+      <div class="slide-category-badge">Conclusion</div>
+    </div>
+
+    <div class="slide-body" style="text-align: center; max-width: 800px; margin: 0 auto;">
+      <h2 class="slide-title" style="font-size: 2.8rem; margin-bottom: 16px;">Conclusion & Project Defense</h2>
+      <p class="slide-subtitle" style="font-size: 1.15rem; margin-bottom: 24px;">
+        SkillBridge eliminates the barriers student innovators face by bridging project discovery, complementary skill matchmaking, and team task tracking in one unified platform.
+      </p>
+
+      <div class="card" style="background: rgba(16, 185, 129, 0.08); border-color: rgba(16, 185, 129, 0.3); text-align: left; padding: 20px 24px;">
+        <h3 style="color: #34d399; margin-bottom: 8px;">Key Academic Achievements:</h3>
+        <ul style="font-size: 0.92rem; color: #cbd5e1; padding-left: 20px; line-height: 1.7;">
+          <li>Solved team skill redundancy using the Complementary Fit algorithm.</li>
+          <li>Integrated full lifecycle support from idea pitch to Sprint Kanban delivery.</li>
+          <li>Validated complete state persistence and zero-dependency cross-browser execution.</li>
+        </ul>
+      </div>
+
+      <div style="margin-top: 24px; font-size: 1.25rem; font-weight: 700; color: #fff;">
+        Thank You! We Welcome Questions & Feedback.
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>SkillBridge Academic Platform Presentation</span>
+      <span>Slide 10 of 10</span>
+    </div>
+  </div>
+
+</body>
+</html>
